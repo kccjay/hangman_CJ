@@ -30,7 +30,24 @@ def show_result():
 def play():
     puzzle = get_puzzle()
     guesses = ""
-    solved = get_solved 
+    solved = get_solved(puzzle, guesses)
+    
+    strikes = 0
+    limit = 6
+    
+    display_board(solved)
+
+    while solved != puzzle:
+        letter = get_guess()
+
+        if letter not in puzzle:
+            pass
+        guesses += letter
+        solved = get_solved(puzzle, guesses)
+        display_board(solved)
+        
+    show_result()
+    
     
 play()
 

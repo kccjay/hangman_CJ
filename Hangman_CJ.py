@@ -2,7 +2,26 @@
 #
 #Carlitos CK
 #
+def splash():
+    print("               _________")
+    print("              |         |")
+    print("              |         |")
+    print("              |         |")
+    print("              |         o")
+    print("              |        /|")
+    print("              |         ^")
+    print("              |         ")
+    print("              |")
+    print("______________|__________________")
+    print()
 
+def end():
+    print("##################################")
+    print("#                                #")
+    print("#     The Creator Carlitos       #")
+    print("#             11/16              #")
+    print("##################################")
+    
 def get_puzzle():
     return "mario"
 
@@ -19,35 +38,46 @@ def get_solved(puzzle, guesses):
 
 def get_guess():
     letter = input("Guess a letter: ")
-    return letter
+    if letter.isalpha():
+        return letter
+    else:
+        return print("*Not a letter")
 
 def display_board(solved):
     print(solved)
 
-def show_result():
-    print("Are you a robot??")
+def show_result(puzzle, guesses):
+    if puzzle == guesses:
+        print()
+        print("Are you a robot??")
+        print()
+    else:
+        print()
+        print("Try harder come on!")
+        print()
     
 def play():
+    splash()
     puzzle = get_puzzle()
     guesses = ""
     solved = get_solved(puzzle, guesses)
     
-    strikes = 0
-    limit = 6
+    body_parts = 0
+    human = 6
     
     display_board(solved)
 
-    while solved != puzzle:
+    while solved != puzzle and body_parts < human:
         letter = get_guess()
-
-        if letter not in puzzle:
-            pass
         guesses += letter
         solved = get_solved(puzzle, guesses)
         display_board(solved)
+
+        body_parts += 1
         
-    show_result()
+    show_result(puzzle, guesses)
+    end()
     
-    
+
 play()
 

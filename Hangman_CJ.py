@@ -4,15 +4,15 @@
 #
 def splash():
     print("               _________")
-    print("              |         |")
-    print("              |         |")
-    print("              |         |")
-    print("              |         o")
-    print("              |        /|")
-    print("              |         ^")
-    print("              |         ")
-    print("              |")
-    print("______________|__________________")
+    print("              |_|_|_|_|_|")
+    print("              |_|_|_|_|_|")
+    print("              |_|_|_|_|_|")
+    print("              |_|_|_|_|_|")
+    print("              |_|_|_|_|_|")
+    print("              |_________|")
+    print("              |_________|")
+    print("              |_________|")
+    print("______________|_________|_________________")
     print()
 
 def end():
@@ -23,7 +23,7 @@ def end():
     print("##################################")
     
 def get_puzzle():
-    return "mario"
+    return "creator"
 
 def get_solved(puzzle, guesses):
     solved = ""
@@ -37,14 +37,17 @@ def get_solved(puzzle, guesses):
     return solved
 
 def get_guess():
-    letter = input("Guess a letter: ")
-    if letter.isalpha():
-        return letter
-    else:
-        return print("*Not a letter")
+    while True:
+        letter = input("Guess a letter: ")
+        if letter.isalpha():
+            return letter
+        else:
+            print()
+            print("*Not a letter*")
+            print()
 
-def display_board(solved):
-    print(solved)
+def display_board(solved, guesses, body_parts):
+    print(str(solved) + " (" + str(guesses) + ") " + "*" + str(body_parts + 1) + "*")
 
 def show_result(puzzle, guesses):
     if puzzle == guesses:
@@ -65,13 +68,13 @@ def play():
     body_parts = 0
     human = 6
     
-    display_board(solved)
+    display_board(solved, guesses, body_parts)
 
     while solved != puzzle and body_parts < human:
         letter = get_guess()
-        guesses += letter
+        guesses += str(letter)
         solved = get_solved(puzzle, guesses)
-        display_board(solved)
+        display_board(solved, guesses, body_parts)
 
         body_parts += 1
         
